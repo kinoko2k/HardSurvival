@@ -1,6 +1,7 @@
 package net.kinoko2k;
 
 import net.kinoko2k.Listeners.*;
+import net.kinoko2k.Listeners.nether.WitherSkeletonCombatAI;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class HardSurvival extends JavaPlugin {
@@ -16,6 +17,8 @@ public final class HardSurvival extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new MobStepAI(this), this);
         getServer().getPluginManager().registerEvents(new CreeperStealthAI(this), this);
         getServer().getPluginManager().registerEvents(new SkeletonCombatAI(this), this);
+        getServer().getPluginManager().registerEvents(new WitherSkeletonCombatAI(this), this);
+        getServer().getPluginManager().registerEvents(new SpiderAttackAI(this), this);
     }
 
     @Override
