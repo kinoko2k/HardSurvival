@@ -15,6 +15,7 @@ public final class HardSurvival extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new MobBlockClimbAI(this), this);
         getServer().getPluginManager().registerEvents(new MobStepAI(this), this);
         getServer().getPluginManager().registerEvents(new CreeperStealthAI(this), this);
+        getServer().getPluginManager().registerEvents(new SkeletonCombatAI(this), this);
     }
 
     @Override

@@ -23,8 +23,7 @@ public class MobStepAI implements Listener {
     private final Set<UUID> trackingMobs = new HashSet<>();
 
     private static final Set<EntityType> STEPPING_MOBS = EnumSet.of(
-            EntityType.ZOMBIE, EntityType.HUSK, EntityType.DROWNED,
-            EntityType.SKELETON, EntityType.STRAY, EntityType.WITHER_SKELETON
+            EntityType.ZOMBIE, EntityType.HUSK, EntityType.DROWNED, EntityType.WITHER_SKELETON
     );
 
     public MobStepAI(JavaPlugin plugin) {
