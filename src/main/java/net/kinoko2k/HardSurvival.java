@@ -1,6 +1,7 @@
 package net.kinoko2k;
 
 import net.kinoko2k.Listeners.*;
+import net.kinoko2k.Listeners.nether.SlimeAndMagmaCubeSizeAI;
 import net.kinoko2k.Listeners.nether.WitherSkeletonCombatAI;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -20,6 +21,7 @@ public final class HardSurvival extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WitherSkeletonCombatAI(this), this);
         getServer().getPluginManager().registerEvents(new SpiderAttackAI(this), this);
         getServer().getPluginManager().registerEvents(new PoisonSpiderAttackAI(this), this);
+        getServer().getPluginManager().registerEvents(new SlimeAndMagmaCubeSizeAI(this), this);
     }
 
     @Override
