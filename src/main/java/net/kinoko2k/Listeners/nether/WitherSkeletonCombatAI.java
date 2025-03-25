@@ -58,8 +58,7 @@ public class WitherSkeletonCombatAI implements Listener {
                         witherSkeleton.getEquipment().setItemInMainHand(new ItemStack(Material.BOW));
                         rangedMode.put(witherSkeleton.getUniqueId(), true);
                     }
-                }
-                else {
+                } else {
                     if (rangedMode.getOrDefault(witherSkeleton.getUniqueId(), false)) {
                         witherSkeleton.getEquipment().setItemInMainHand(new ItemStack(Material.STONE_SWORD));
                         rangedMode.put(witherSkeleton.getUniqueId(), false);

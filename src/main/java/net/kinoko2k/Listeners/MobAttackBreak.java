@@ -1,11 +1,7 @@
 package net.kinoko2k.Listeners;
 
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Monster;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDamageEvent;
@@ -62,8 +58,8 @@ public class MobAttackBreak implements Listener {
 
     private boolean isDoor(Material material) {
         return material == OAK_DOOR || material == SPRUCE_DOOR ||
-               material == BIRCH_DOOR || material == JUNGLE_DOOR ||
-               material == ACACIA_DOOR || material == DARK_OAK_DOOR ||
-               material == IRON_DOOR;
+                material == BIRCH_DOOR || material == JUNGLE_DOOR ||
+                material == ACACIA_DOOR || material == DARK_OAK_DOOR ||
+                material == IRON_DOOR;
     }
 }

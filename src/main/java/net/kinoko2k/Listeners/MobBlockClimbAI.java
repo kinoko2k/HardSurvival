@@ -1,6 +1,5 @@
 package net.kinoko2k.Listeners;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -11,8 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityTargetEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.EnumSet;
 import java.util.HashSet;
@@ -64,8 +63,7 @@ public class MobBlockClimbAI implements Listener {
 
                 if (heightDifference >= 2) {
                     placeBlockUnderMob(mob);
-                }
-                else if (heightDifference == 0) {
+                } else if (heightDifference == 0) {
                     Location front = mobLoc.clone().add(mobLoc.getDirection().multiply(1));
                     if (front.getBlock().getType().isAir()) {
                         placeBlock(front);

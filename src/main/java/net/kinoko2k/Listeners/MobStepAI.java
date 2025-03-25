@@ -1,6 +1,5 @@
 package net.kinoko2k.Listeners;
 
-import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
