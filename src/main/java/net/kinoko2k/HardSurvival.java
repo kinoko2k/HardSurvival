@@ -1,6 +1,8 @@
 package net.kinoko2k;
 
 import net.kinoko2k.Listeners.*;
+import net.kinoko2k.Listeners.boss.EnderDragonAI;
+import net.kinoko2k.Listeners.boss.WitherAI;
 import net.kinoko2k.Listeners.nether.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -23,6 +25,8 @@ public final class HardSurvival extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SlimeAndMagmaCubeSizeAI(this), this);
         getServer().getPluginManager().registerEvents(new BlazeFireballAI(this), this);
         getServer().getPluginManager().registerEvents(new GhastBiomeSpawn(this), this);
+        getServer().getPluginManager().registerEvents(new EnderDragonAI(this), this);
+        getServer().getPluginManager().registerEvents(new WitherAI(this), this);
     }
 
     @Override
