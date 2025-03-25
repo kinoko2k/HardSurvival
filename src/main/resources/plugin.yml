@@ -1,0 +1,8 @@
+name: HardSurvival
+version: ${project.version}
+main: net.kinoko2k.HardSurvival
+api-version: '1.21'
+load: STARTUP
+authors: [ Kinoko_2K ]
+description: HardSurvival (^o^)
+website: https://kinoko2k.github.io/
