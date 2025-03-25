@@ -19,6 +19,7 @@ public final class HardSurvival extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SkeletonCombatAI(this), this);
         getServer().getPluginManager().registerEvents(new WitherSkeletonCombatAI(this), this);
         getServer().getPluginManager().registerEvents(new SpiderAttackAI(this), this);
+        getServer().getPluginManager().registerEvents(new PoisonSpiderAttackAI(this), this);
     }
 
     @Override

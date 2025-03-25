@@ -1,10 +1,10 @@
 package net.kinoko2k.Listeners;
 
 import org.bukkit.Particle;
-import org.bukkit.entity.Arrow;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
-import org.bukkit.entity.Spider;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -15,23 +15,25 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-public class SpiderAttackAI implements Listener {
+public class PoisonSpiderAttackAI implements Listener {
     private final JavaPlugin plugin;
 
-    public SpiderAttackAI(JavaPlugin plugin) {
+    public PoisonSpiderAttackAI(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
-    public void onSpiderTarget(EntityTargetEvent event) {
-        if (event.getEntity() instanceof Spider && event.getTarget() instanceof Player) {
-            Spider spider = (Spider) event.getEntity();
+    public void onPoisonSpiderTarget(EntityTargetEvent event) {
+        if (event.getEntity() instanceof LivingEntity && event.getTarget() instanceof Player) {
+            LivingEntity spider = (LivingEntity) event.getEntity();
             Player player = (Player) event.getTarget();
-            startSpiderAttackAI(spider, player);
+            if (spider.getType() == EntityType.CAVE_SPIDER) {
+                startPoisonAttackAI(spider, player);
+            }
         }
     }
 
-    private void startSpiderAttackAI(Spider spider, Player player) {
+    private void startPoisonAttackAI(LivingEntity spider, Player player) {
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -41,26 +43,29 @@ public class SpiderAttackAI implements Listener {
                 }
 
                 if (spider.getLocation().distance(player.getLocation()) < 10) {
-                    throwSlime(spider, player);
+                    throwPoisonSnowball(spider, player);
                 }
             }
         }.runTaskTimer(plugin, 60L, 60L);
     }
 
-    private void throwSlime(Spider spider, Player player) {
+    private void throwPoisonSnowball(LivingEntity spider, Player player) {
         Snowball snowball = spider.getWorld().spawn(spider.getLocation().add(0, 1, 0), Snowball.class);
         Vector direction = player.getLocation().subtract(spider.getLocation()).toVector().normalize().multiply(1.5);
         snowball.setVelocity(direction);
+
         snowball.getWorld().spawnParticle(Particle.SNOWFLAKE, snowball.getLocation(), 10, 0.3, 0.1, 0.3, 0.01);
     }
 
     @EventHandler
-    public void onSnowballHit(EntityDamageByEntityEvent event) {
-        if (event.getEntity() instanceof Player && (event.getDamager() instanceof Snowball || event.getDamager() instanceof Arrow)) {
+    public void onPoisonSnowballHit(EntityDamageByEntityEvent event) {
+        if (event.getEntity() instanceof Player && event.getDamager() instanceof Snowball) {
+            Snowball snowball = (Snowball) event.getDamager();
             Player player = (Player) event.getEntity();
 
-            player.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 150, 1));
-            player.damage(2);
+            if (snowball.getShooter() instanceof LivingEntity && ((LivingEntity) snowball.getShooter()).getType() == EntityType.CAVE_SPIDER) {
+                player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 200, 1));
+            }
         }
     }
 }
